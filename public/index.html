@@ -13,11 +13,60 @@
 <body>
 <header>
   <h1>Govwiki</h1>
+  <div id="menu">
+    <select id="state-selector">
+      <option value="AK">Alaska</option>
+      <option value="AL" selected="true">Alabama</option>
+      <option value="CA">California</option>
+      <option value="CT">Connecticut</option>
+    </select>
+
+    <select id="gov-type-selector">
+      <option value="01">Air Transportation (Airports)</option>
+      <option value="02" selected="true">Cemeteries</option>
+      <option value="03">Miscellaneous Commercial Activities</option>
+      <option value="04">Correctional Institutions</option>
+    </select>
+
+  </div>
 </header>
 <div id="list-container"></div>
 <footer>
   <p><a href="https://github.com/grantbot/govwiki-client">source</a></p>
 </footer>
-<script type="text/javascript"></script>
+<script type="text/javascript">
+
+    var state_selector = document.getElementById("state-selector")
+    var selected_state = state_selector.value
+    state_selector.addEventListener("change", selectState, false)
+
+    var gov_type_selector = document.getElementById("gov-type-selector")
+    var selected_gov_type = gov_type_selector.value
+    gov_type_selector.addEventListener("change", selectGovType, false)
+
+    requestChart()
+
+    function selectState(){
+        selected_state = this.value
+        requestChart()
+    }
+
+    function selectGovType(){
+        selected_gov_type = this.value
+        requestChart()
+    }
+
+    function requestChart(){
+        var chart_request = {
+            state: selected_state,
+            gov_type: selected_gov_type
+        }
+        console.log(chart_request)
+        // TODO: make a call to the server
+    }
+
+
+
+</script>
 </body>
 </html>
