@@ -1,14 +1,17 @@
-console.log("List all the govs!")
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+mongoose.connect('mongodb://grantbot:circle12345@ds045521.mongolab.com:45521/govwiki');
 
-var mongoose = require('mongoose')
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
 
-//mongoose.connect('mongodb://localhost/test')
+db.once('open', function (callback) {
+  var govSchema = new Schema({ name: String }, {collection: 'govs'});
 
-//var Cat = mongoose.model('Cat', { name: String })
-//
-//var kitty = new Cat({ name: 'Zildjian' })
-//kitty.save(function (err) {
-//  if (err) // ...
-//  console.log('meow')
-//})
+  var Gov = mongoose.model('Gov', govSchema);
 
+  Gov.findOne(function (err, res) {
+    if (err) { throw err; }
+    console.log(res);
+  });
+});
