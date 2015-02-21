@@ -10,8 +10,9 @@ db.once('open', function (callback) {
 
   var Gov = mongoose.model('Gov', govSchema);
 
-  Gov.findOne(function (err, res) {
+  Gov.find({ state: 'NY' }, function (err, govs) {
     if (err) { throw err; }
-    console.log(res);
+    console.log(govs);
+    console.log('DONE');
   });
 });
