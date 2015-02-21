@@ -24,10 +24,11 @@ app.get('/', function(req, res) {
 
 app.post('/', function (req, res) {
   //Parse state and gov type
+  console.log('BODY', req.body);
 
   Gov.find({ 
-    state: 'NY', 
-    gov_type: 'BLAH' 
+    state: 'WY', 
+    gov_type: 'General Purpose' 
   }, function (err, govs) {
     if (err) { 
       console.log(err);
