@@ -4,7 +4,8 @@ var bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-mongoose.connect('mongodb://grantbot:circle12345@ds045521.mongolab.com:45521/govwiki');
+// mongoose.connect('mongodb://grantbot:circle12345@ds045521.mongolab.com:45521/govwiki');
+mongoose.connect('mongodb://govwiki-client:g0vw1k1@ds045521.mongolab.com:45521/govwiki'); // uses read-only credentials
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
